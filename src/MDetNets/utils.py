@@ -14,7 +14,7 @@ def random_scope_partition(scope, n):
     return partition
 
 def tensordot_logdomain(arr_1, arr_2):
-    return jnp.reshape(arr_1, newshape=arr_1.shape + (1,) * arr_2.ndim) + jnp.reshape(arr_2, newshape=(1,)*arr_1.ndim +  arr_2.shape)
+    return jnp.reshape(arr_1, shape=arr_1.shape + (1,) * arr_2.ndim) + jnp.reshape(arr_2, shape=(1,)*arr_1.ndim +  arr_2.shape)
 
 def interleave(tup_1, tup_2):
     tup_output = list(tup_1 + tup_2)

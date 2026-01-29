@@ -355,7 +355,7 @@ class GeneralizedDenseWeights():
                                               ),
                                               shape=(region_size, group_size)
                                               ))
-        sum_to_log_weights = jnp.reshape(sum_to_log_weights, newshape=(region_size,
+        sum_to_log_weights = jnp.reshape(sum_to_log_weights, shape=(region_size,
                                                                        group_size,
                                                                        num_products,
                                                                        left_child_group_size,
@@ -505,7 +505,7 @@ class GeneralizedDenseWeights():
         # along the g dimensions.
         # Shape (batch_size, P_1, G_(l, 1), G_(r, 1), ... P_n, G_(l, n), G_(r, n))
         combinations_log_values = jnp.reshape(left_child_log_values,
-                                              newshape=(batch_size,) + tuple(itertools.chain.from_iterable(
+                                              shape=(batch_size,) + tuple(itertools.chain.from_iterable(
                                                   (left_child_log_values.shape[circuit_idx_to_region_dimension(circuit_idx)],
                                                    left_child_log_values.shape[circuit_idx_to_group_dimension(circuit_idx)],
                                                    1)
@@ -514,7 +514,7 @@ class GeneralizedDenseWeights():
                                               ) \
                                   + \
                                   jnp.reshape(right_child_log_values,
-                                              newshape=(batch_size,) + tuple(itertools.chain.from_iterable(
+                                              shape=(batch_size,) + tuple(itertools.chain.from_iterable(
                                                   (left_child_log_values.shape[circuit_idx_to_region_dimension(circuit_idx)],
                                                    1,
                                                    right_child_log_values.shape[circuit_idx_to_group_dimension(circuit_idx)])
@@ -536,8 +536,8 @@ class GeneralizedDenseWeights():
             broadcast_shape_log_values = region_log_values.shape[ : 1+2*(circuit_idx)] + (1, 1) + region_log_values.shape[1+2*(circuit_idx):]
 
             region_log_values = logsumexp(
-                jnp.reshape(region_log_values, newshape=broadcast_shape_log_values) + \
-                jnp.reshape(sum_to_log_weights, newshape=broadcast_shape_log_weights),
+                jnp.reshape(region_log_values, shape=broadcast_shape_log_values) + \
+                jnp.reshape(sum_to_log_weights, shape=broadcast_shape_log_weights),
                 axis=(1+2*(circuit_idx)+2, 1+2*(circuit_idx)+3, 1+2*(circuit_idx)+4)  # p_i, g_(l, i), g_(r, i)
             )
 
@@ -802,7 +802,7 @@ class GeneralizedDenseLinearWeights():
                                                       ),
                                                       shape=(region_size, group_size)
                                                       )
-        sum_to_weights = jnp.reshape(sum_to_weights, newshape=(region_size,
+        sum_to_weights = jnp.reshape(sum_to_weights, shape=(region_size,
                                                                        group_size,
                                                                        num_products,
                                                                        left_child_group_size,
@@ -950,7 +950,7 @@ class GeneralizedDenseLinearWeights():
         # along the g dimensions.
         # Shape (batch_size, P_1, G_(l, 1), G_(r, 1), ... P_n, G_(l, n), G_(r, n))
         combinations_log_values = jnp.reshape(left_child_log_values,
-                                              newshape=(batch_size,) + tuple(itertools.chain.from_iterable(
+                                              shape=(batch_size,) + tuple(itertools.chain.from_iterable(
                                                   (left_child_log_values.shape[
                                                        circuit_idx_to_region_dimension(circuit_idx)],
                                                    left_child_log_values.shape[
@@ -961,7 +961,7 @@ class GeneralizedDenseLinearWeights():
                                               ) \
                                   + \
                                   jnp.reshape(right_child_log_values,
-                                              newshape=(batch_size,) + tuple(itertools.chain.from_iterable(
+                                              shape=(batch_size,) + tuple(itertools.chain.from_iterable(
                                                   (left_child_log_values.shape[
                                                        circuit_idx_to_region_dimension(circuit_idx)],
                                                    1,
@@ -990,8 +990,8 @@ class GeneralizedDenseLinearWeights():
             broadcast_shape_values = region_log_values.shape[: 1 + 2 * (circuit_idx)] + (
             1, 1) + region_log_values.shape[1 + 2 * (circuit_idx):]
 
-            reshaped_weights = jnp.reshape(sum_to_weights, newshape=broadcast_shape_weights)
-            reshaped_region_log_values = jnp.reshape(region_log_values, newshape=broadcast_shape_values)
+            reshaped_weights = jnp.reshape(sum_to_weights, shape=broadcast_shape_weights)
+            reshaped_region_log_values = jnp.reshape(region_log_values, shape=broadcast_shape_values)
 
             # max along summed out axes
             max_region_log_values_keepdims = jnp.max(reshaped_region_log_values,
