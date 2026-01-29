@@ -1,5 +1,5 @@
 numpy
-jax
+jax[cuda12]
 jaxlib
 jupyter
 matplotlib
@@ -8,6 +8,6 @@ pytest
 pytest-repeat
 infinite-sets
 bnlearn
-pandas
+pandas<3.0
 pgmpy
 scikit-learn
