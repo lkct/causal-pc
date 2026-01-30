@@ -139,23 +139,23 @@ if __name__ == "__main__":
     # The datasets and target values are generated using prepare_bns.py
     # To reproduce the results, uncomment the appropriate block.
 
-    print(run_naive_benchmark(dataset = "src/Experiments/data/asia.pkl",
-                              target=0.8065,
-                  x = {"bronc"},
-                  y = {"dysp"},
-                  z = {'smoke', 'lung', 'asia', 'tub'},
-                  x_val = 0,
-                  y_val = 0,))
-    print(run_benchmark(dataset = "src/Experiments/data/asia.pkl",
-                  target = 0.8065,
-                  x = {"bronc"},
-                  y = {"dysp"},
-                  z = {'smoke', 'lung', 'asia', 'tub'},
-                  x_val = 0,
-                  y_val = 0,
-                  runs=10
-                  )
-             )
+    # print(run_naive_benchmark(dataset = "src/Experiments/data/asia.pkl",
+    #                           target=0.8065,
+    #               x = {"bronc"},
+    #               y = {"dysp"},
+    #               z = {'smoke', 'lung', 'asia', 'tub'},
+    #               x_val = 0,
+    #               y_val = 0,))
+    # print(run_benchmark(dataset = "src/Experiments/data/asia.pkl",
+    #               target = 0.8065,
+    #               x = {"bronc"},
+    #               y = {"dysp"},
+    #               z = {'smoke', 'lung', 'asia', 'tub'},
+    #               x_val = 0,
+    #               y_val = 0,
+    #               runs=10
+    #               )
+    #          )
 
 
     # print(run_naive_benchmark(dataset = "andes",
@@ -230,23 +230,23 @@ if __name__ == "__main__":
     #          )
 
 
-    # print(run_naive_benchmark(dataset = "src/Experiments/data/sachs.pkl",
-    #                           target=0.2869,
-    #               x = {"PKA"},
-    #               y = {"Raf"},
-    #               z = {'PKC','Plcg', 'PIP2', 'PIP3'},
-    #               x_val = 0,
-    #               y_val = 0,))
-    # print(run_benchmark(dataset = "src/Experiments/data/sachs.pkl",
-    #               target = 0.2869,
-    #               x = {"PKA"},
-    #               y = {"Raf"},
-    #               z = {'PKC','Plcg', 'PIP2', 'PIP3'},
-    #               x_val = 0,
-    #               y_val = 0,
-    #               runs=10
-    #               )
-    #          )
+    print(run_naive_benchmark(dataset = "src/Experiments/data/sachs.pkl",
+                              target=0.2869,  # 0.2869, 0.2340, 0.4791
+                  x = {"PKA"},
+                  y = {"Raf"},
+                  z = {'PKC','Plcg', 'PIP2', 'PIP3'},
+                  x_val = 0,
+                  y_val = 0,))
+    print(run_benchmark(dataset = "src/Experiments/data/sachs.pkl",
+                  target = 0.2869,
+                  x = {"PKA"},
+                  y = {"Raf"},
+                  z = {'PKC','Plcg', 'PIP2', 'PIP3'},
+                  x_val = 0,
+                  y_val = 0,
+                  runs=10
+                  )
+             )
 
     # print(run_naive_benchmark(dataset="child",
     #                           target=0.3164,

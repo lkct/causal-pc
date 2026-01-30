@@ -3,13 +3,16 @@ import pandas as pd
 from pgmpy.factors.discrete import TabularCPD
 from pgmpy.inference import CausalInference
 
+from repro import set_determinism, seed
+set_determinism(check_env=True)
+seed(3407)
 
 
-model = bnlearn.import_DAG('src/Experiments/bayesian_network/child.bif')
+model = bnlearn.import_DAG('src/Experiments/bayesian_network/sachs.bif')
 infer = CausalInference(model["model"])
 
-print("Ground truth causal effect: ", infer.query(variables=["Sick"], do={
-    "XrayReport": 0
+print("Ground truth causal effect: ", infer.query(variables=["Raf"], do={
+    "PKA": 0
 }))
 
 vars = bnlearn.topological_sort(model)
@@ -31,5 +34,5 @@ print(df)
 
 
 
-df.to_pickle("src/Experiments/data/child.pkl")
+df.to_pickle("src/Experiments/data/sachs.pkl")
 
