@@ -9,6 +9,8 @@ from math import ceil
 import time
 import copy
 from collections import defaultdict
+from repro import set_determinism, seed
+
 
 def load_bn_dataset(filename, minibatch_size, test_size=0.1):
     df = pd.read_pickle(filename)
@@ -79,6 +81,7 @@ def run_benchmark(dataset, target, x, y, z, x_val, y_val, runs=10, region_shape=
         var_names = set(inputs_train_batched[0].keys())
         print(var_names)
         other_vars = var_names.difference(x).difference(y).difference(z)
+        print(other_vars)
 
         net = LazyDenseMDNet(list(var_names))
         net.generate_staged_binary_vtree(var_stages=[frozenset(x.union(z))],
@@ -128,6 +131,9 @@ def run_benchmark(dataset, target, x, y, z, x_val, y_val, runs=10, region_shape=
     return "Estimate error: " + str(jnp.mean(jnp.array(errors))) + ", Time Taken: " + str(jnp.mean(jnp.array(times)))
 
 if __name__ == "__main__":
+
+    set_determinism(check_env=True)
+    seed(3407)
 
     # Below are the tests contained in the Empirical Evaluation in the paper.
     # The datasets and target values are generated using prepare_bns.py
