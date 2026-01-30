@@ -11,7 +11,7 @@ import copy
 from collections import defaultdict
 
 def load_bn_dataset(filename, minibatch_size, test_size=0.1):
-    df = pd.read_pickle("src/Experiments/data/" + filename + ".pkl")
+    df = pd.read_pickle(filename)
     train_df, test_df = train_test_split(df, test_size=test_size)
     train_x = train_df.to_numpy()
     test_x = test_df.to_numpy()
@@ -31,7 +31,7 @@ def load_bn_dataset(filename, minibatch_size, test_size=0.1):
     return inputs_train_batched, inputs_test_batched
 
 def run_naive_benchmark(dataset, target, x, y, z, x_val, y_val):
-    df = pd.read_pickle("src/Experiments/data/" + dataset + ".pkl")
+    df = pd.read_pickle(dataset)
     arr = df.to_numpy()
     var_names = list(df)
     print(var_names)
@@ -133,14 +133,14 @@ if __name__ == "__main__":
     # The datasets and target values are generated using prepare_bns.py
     # To reproduce the results, uncomment the appropriate block.
 
-    print(run_naive_benchmark(dataset = "asia",
+    print(run_naive_benchmark(dataset = "src/Experiments/data/asia.pkl",
                               target=0.8065,
                   x = {"bronc"},
                   y = {"dysp"},
                   z = {'smoke', 'lung', 'asia', 'tub'},
                   x_val = 0,
                   y_val = 0,))
-    print(run_benchmark(dataset = "asia",
+    print(run_benchmark(dataset = "src/Experiments/data/asia.pkl",
                   target = 0.8065,
                   x = {"bronc"},
                   y = {"dysp"},
@@ -224,14 +224,14 @@ if __name__ == "__main__":
     #          )
 
 
-    # print(run_naive_benchmark(dataset = "sachs",
+    # print(run_naive_benchmark(dataset = "src/Experiments/data/sachs.pkl",
     #                           target=0.2869,
     #               x = {"PKA"},
     #               y = {"Raf"},
     #               z = {'PKC','Plcg', 'PIP2', 'PIP3'},
     #               x_val = 0,
     #               y_val = 0,))
-    # print(run_benchmark(dataset = "sachs",
+    # print(run_benchmark(dataset = "src/Experiments/data/sachs.pkl",
     #               target = 0.2869,
     #               x = {"PKA"},
     #               y = {"Raf"},
